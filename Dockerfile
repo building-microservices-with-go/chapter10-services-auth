@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+EXPOSE 8080
+
 RUN adduser -S dockeruser
 RUN mkdir /service
 COPY ./auth /service/auth
