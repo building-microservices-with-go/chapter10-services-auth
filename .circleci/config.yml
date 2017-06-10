@@ -7,8 +7,31 @@ jobs:
 
     working_directory: /go/src/github.com/building-microservices-with-go/chapter11-services-auth
 
+    environment:
+      TEST_RESULTS: /tmp/test-results
+
     steps:
       - checkout
+      - run: mkdir -p $TEST_RESULTS
       - run: go get github.com/Masterminds/glide
+      - run: go get github.com/jstemmer/go-junit-report
       - run: glide up
-      - run: make test
+      - run: 
+          name: Run unit tests
+          command: |
+           trap "go-junit-report <${TEST_RESULTS}/go-test.out > ${TEST_RESULTS}/go-test-report.xml" EXIT
+           make test | tee ${TEST_RESULTS}/go-test.out
+      - run:
+          name: Build application for linux
+          command: make build_linux
+
+      - setup_remote_docker
+      - run:
+          name: Build and push Docker image
+          command: |
+            make build_docker
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push buildingmicroserviceswithgo/auth:latest
+
+      - store_test_results:
+          path: /tmp/test-results
