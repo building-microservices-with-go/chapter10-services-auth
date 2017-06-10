@@ -42,6 +42,7 @@ jobs:
           name: Deploy to elastic beanstalk
           command: |
             cd terraform
+            terraform init
             terraform plan
 
       - store_test_results:
