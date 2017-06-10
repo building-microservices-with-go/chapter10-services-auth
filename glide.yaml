@@ -1,0 +1,12 @@
+package: github.com/building-microservices-with-go/chapter11-services-auth
+import:
+- package: github.com/SermoDigital/jose
+  version: ~1.1.0
+  subpackages:
+  - crypto
+  - jws
+- package: github.com/building-microservices-with-go/crypto
+- package: github.com/sirupsen/logrus
+  version: ~1.0.0
+- package: gopkg.in/go-playground/validator.v9
+  version: ~9.3.6

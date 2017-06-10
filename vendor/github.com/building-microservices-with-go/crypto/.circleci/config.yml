@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    docker:
+      # CircleCI Go images available at: https://hub.docker.com/r/circleci/golang/
+      - image: circleci/golang:1.8
+
+    working_directory: /go/src/github.com/building-microservices-with-go/crypto
+
+    steps:
+      - checkout
+      - run: go build utils.go
