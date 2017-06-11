@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/DataDog/datadog-go/statsd"
 	"github.com/building-microservices-with-go/chapter11-services-auth/handlers"
 	log "github.com/sirupsen/logrus"
 )
@@ -17,9 +18,18 @@ func main() {
 		Level:     log.DebugLevel,
 	}
 
-	jwt := handlers.NewJWT(logger)
+	c, err := statsd.New("127.0.0.1:8125")
+	if err != nil {
+		log.Fatal(err)
+	}
+	// prefix every metric with the app name
+	c.Namespace = "chapter11.auth."
+
+	jwt := handlers.NewJWT(logger, c)
+	health := handlers.NewHealth(logger, c)
+
 	http.DefaultServeMux.HandleFunc("/", jwt.Handle)
-	http.DefaultServeMux.HandleFunc("/health", handlers.HealthHandler)
+	http.DefaultServeMux.HandleFunc("/health", health.Handle)
 
 	logger.WithField("service", "jwt").Infof("Starting server, listening on %s", address)
 	log.WithField("service", "jwt").Fatal(http.ListenAndServe(address, http.DefaultServeMux))

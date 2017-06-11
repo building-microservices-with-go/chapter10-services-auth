@@ -4,3 +4,4 @@ terraform.tfstate.backup
 .envrc
 auth-Dockerrun.zip
 .DS_Store
+auth

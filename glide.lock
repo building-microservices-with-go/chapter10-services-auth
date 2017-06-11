@@ -1,8 +1,12 @@
-hash: 60f255684435b87cfb13b1bd156eb3fad1d27c8e7b5fdd591604ded36dde53dd
-updated: 2017-06-10T17:13:32.942017923+01:00
+hash: b82a691d14ac7407435dd088c4d9a79f33e9776db2a62ce24bb8d27e1b50ccda
+updated: 2017-06-11T13:25:28.151937629+01:00
 imports:
 - name: github.com/building-microservices-with-go/crypto
   version: bd514fa657a3cc17f9fdac30f0f49fb40f79a91e
+- name: github.com/DataDog/datadog-go
+  version: 0ddda6bee21174ef6c4873647cb0d6ec9cba996f
+  subpackages:
+  - statsd
 - name: github.com/go-playground/locales
   version: 1e5f1161c6416a5ff48840eb8724a394e48cc534
   subpackages:
