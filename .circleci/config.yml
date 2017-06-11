@@ -44,6 +44,7 @@ jobs:
             cd terraform
             terraform init
             terraform plan
+            terraform apply
 
       - store_test_results:
           path: /tmp/test-results
