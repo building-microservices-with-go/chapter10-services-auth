@@ -46,5 +46,11 @@ jobs:
             terraform plan
             terraform apply
 
+      - run:
+          name: Smoke test
+            command: |
+              cd terraform
+              $curl $(terraform output auth_alb)/health
+
       - store_test_results:
           path: /tmp/test-results
