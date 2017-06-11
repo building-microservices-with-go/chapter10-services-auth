@@ -5,6 +5,6 @@
     "Update": "true"
   },
   "Ports": {
-    "ContainerPort":"8080",
+    "ContainerPort":"8080"
   }
 }
