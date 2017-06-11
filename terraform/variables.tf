@@ -35,3 +35,5 @@ variable "instance_type" {
 variable "elb_scheme" {
   default = "external"
 }
+
+variable "datadog_api_key" {}

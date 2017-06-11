@@ -163,4 +163,10 @@ resource "aws_elastic_beanstalk_environment" "default" {
     name      = "Subnets"
     value     = "${join(",", data.terraform_remote_state.main.vpc_subnets)}"
   }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "API_KEY"
+    value     = "${var.datadog_api_key}"
+  }
 }
