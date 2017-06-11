@@ -11,6 +11,10 @@ resource "datadog_timeboard" "auth" {
     request {
       q    = "sum:chapter11.auth.jwt.badrequest{*}"
       type = "bars"
+
+      style {
+        palette = "warm"
+      }
     }
 
     request {
