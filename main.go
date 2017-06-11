@@ -19,6 +19,7 @@ func main() {
 
 	jwt := handlers.NewJWT(logger)
 	http.DefaultServeMux.HandleFunc("/", jwt.Handle)
+	http.DefaultServeMux.HandleFunc("/health", handlers.HealthHandler)
 
 	logger.WithField("service", "jwt").Infof("Starting server, listening on %s", address)
 	log.WithField("service", "jwt").Fatal(http.ListenAndServe(address, http.DefaultServeMux))
