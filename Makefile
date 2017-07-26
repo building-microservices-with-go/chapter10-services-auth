@@ -10,4 +10,7 @@ build_docker:
 run:
 	go run main.go
 
+staticcheck:
+	staticcheck $(shell go list ./... | grep -v /vendor/)
+
 test: unit

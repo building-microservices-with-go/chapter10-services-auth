@@ -1,0 +1,10 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "buildingmicroserviceswithgo/auth:latest",
+    "Update": "true"
+  },
+  "Ports": [
+    { "ContainerPort":"8080" }
+  ]
+}

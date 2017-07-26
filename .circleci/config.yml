@@ -21,11 +21,17 @@ jobs:
             glide up
             curl -Ls -o /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.9.8/terraform_0.9.8_linux_amd64.zip
             sudo unzip /tmp/terraform.zip -d /usr/local/bin
+
       - run: 
           name: Run unit tests
           command: |
            trap "go-junit-report <${TEST_RESULTS}/go-test.out > ${TEST_RESULTS}/go-test-report.xml" EXIT
            make test | tee ${TEST_RESULTS}/go-test.out
+
+      - run: 
+          name: Static language checks
+          command: make staticcheck
+
       - run:
           name: Build application for linux
           command: make build_linux
