@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/DataDog/datadog-go/statsd"
-	"github.com/building-microservices-with-go/chapter11-services-auth/handlers"
+	"github.com/building-microservices-with-go/chapter10-services-auth/handlers"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -23,7 +23,7 @@ func main() {
 		log.Fatal(err)
 	}
 	// prefix every metric with the app name
-	c.Namespace = "chapter11.auth."
+	c.Namespace = "chapter10.auth."
 
 	jwt := handlers.NewJWT(logger, c)
 	health := handlers.NewHealth(logger, c)
